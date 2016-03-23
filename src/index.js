@@ -7,4 +7,6 @@ reqiure.ensure([], function(require) {
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<h1>Hello, world!!!</h1>, document.querySelector('.container'));
+import App from './App';
+
+ReactDOM.render(<App />, document.querySelector('.container'));

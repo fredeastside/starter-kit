@@ -3,7 +3,11 @@ const webpack = require('webpack');
 
 module.exports = {
   context: __dirname + "/src",
-  entry: "./index",
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    "./index"
+  ],
   /*
   несколько точек входа
   enrty: {
@@ -13,7 +17,7 @@ module.exports = {
   */
   output: {
       path: __dirname + "/dist",
-      publicPath: '/assets',
+      publicPath: '/assets/',
       //filename: "bundle.[chunkhash].js" // filename: "[name].js" несколько точек входа
       filename: "bundle.js" // filename: "[name].js" несколько точек входа
       // chunkFilename: "[id].[chunkhash].js"
@@ -35,14 +39,17 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loaders: ['react-hot', 'babel'],
         //exclude: /node_modules/,
         include: __dirname + "/src"
-      }/*,
+      },
       {
-        test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-        loader: 'file?name=[path][name].[hash:6].[ext]'
-      }*/
+        test:   /\.styl$/,
+        loader: 'style!css!stylus?resolve url'
+      }, {
+        test:   /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+        loader: 'file?name=[path][name].[ext]?[hash]'
+      }
     ]
     // noParse:
   },
@@ -56,6 +63,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(), // не пересобирать js если возникли ошибки
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV)
@@ -63,12 +71,12 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: "common"
     })*/
-  ],
+  ]/*,
   devServer: {
     host: 'localhost',
-    port: 8080/*,
-    contentBase: __dirname + '/dist'*/
-  }
+    port: 3000,
+    contentBase: __dirname + '/dist'
+  }*/
 };
 
 if (NODE_ENV === 'production') {
