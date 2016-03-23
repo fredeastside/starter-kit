@@ -5,5 +5,6 @@ reqiure.ensure([], function(require) {
 }, 'auth' - название для общей сборки кусков);
 */
 import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log(123);
+ReactDOM.render(<h1>Hello, world!!!</h1>, document.querySelector('.container'));

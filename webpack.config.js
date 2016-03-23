@@ -13,7 +13,7 @@ module.exports = {
   */
   output: {
       path: __dirname + "/dist",
-      publicPath: '/',
+      publicPath: '/assets',
       //filename: "bundle.[chunkhash].js" // filename: "[name].js" несколько точек входа
       filename: "bundle.js" // filename: "[name].js" несколько точек входа
       // chunkFilename: "[id].[chunkhash].js"
@@ -59,15 +59,15 @@ module.exports = {
     new webpack.NoErrorsPlugin(), // не пересобирать js если возникли ошибки
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV)
-    }),
+    })/*,
     new webpack.optimize.CommonsChunkPlugin({
       name: "common"
-    })
+    })*/
   ],
   devServer: {
     host: 'localhost',
-    port: 8080,
-    contentBase: __dirname + '/dist'
+    port: 8080/*,
+    contentBase: __dirname + '/dist'*/
   }
 };
 
