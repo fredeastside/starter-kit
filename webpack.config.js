@@ -83,7 +83,7 @@ module.exports = {
 };
 
 if (NODE_ENV === 'production') {
-  module.export.plugins.push(
+  module.exports.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
